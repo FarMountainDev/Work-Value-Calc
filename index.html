@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work-Value Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<table>
+
+    <tr>
+        <th colspan="4">
+            Work-Value Calculator
+        </th>
+    </tr>
+
+    <tr class="border-top border-bottom">
+        <td class="row-title" style="width: 50%">Select Years to Compare:</td>
+        <td class="year-select">
+            <label for="yearA"></label>
+            <select name="yearA" id="yearA"></select>
+        </td>
+        <td></td>
+        <td class="year-select">
+            <label for="yearB"></label>
+            <select name="yearB" id="yearB"></select>
+        </td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Minimum Wage:
+                <span class="tooltip-text">https://www.dol.gov/agencies/whd/minimum-wage/history/chart</span>
+            </div>
+        </td>
+        <td id="yearAMinWage"></td>
+        <td id="compareMinWage"></td>
+        <td id="yearBMinWage"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Median Yearly Income:
+                <span class="tooltip-text">https://fred.stlouisfed.org/data/MEPAINUSA646N</span>
+            </div>
+        </td>
+        <td id="yearAMedianIncome"></td>
+        <td id="compareMedianIncome"></td>
+        <td id="yearBMedianIncome"></td>
+    </tr>
+    <tr class="light-border-bottom">
+        <td class="row-title">
+            <div class="tooltip">
+                Average Yearly Salary:
+                <span class="tooltip-text">https://www.ssa.gov/OACT/COLA/awiseries.html</span>
+            </div>
+        </td>
+        <td id="yearAAverageSalary"></td>
+        <td id="compareAverageSalary"></td>
+        <td id="yearBAverageSalary"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Average Home Price:
+                <span class="tooltip-text">https://fred.stlouisfed.org/data/ASPNHSUSA</span>
+            </div>
+        </td>
+        <td id="yearAAverageHomePrice"></td>
+        <td id="compareAverageHomePrice"></td>
+        <td id="yearBAverageHomePrice"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Average Public Tuition:
+                <span class="tooltip-text">https://research.collegeboard.org/trends/college-pricing</span>
+            </div>
+        </td>
+        <td id="yearAPublicTuition"></td>
+        <td id="comparePublicTuition"></td>
+        <td id="yearBPublicTuition"></td>
+    </tr>
+    <tr class="border-bottom">
+        <td class="row-title">
+            <div class="tooltip">
+                Average Private Tuition:
+                <span class="tooltip-text">https://research.collegeboard.org/trends/college-pricing</span>
+            </div>
+        </td>
+        <td id="yearAPrivateTuition"></td>
+        <td id="comparePrivateTuition"></td>
+        <td id="yearBPrivateTuition"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Minimum Wage Hours to Purchase Average Home:
+                <span class="tooltip-text">Hours = Avg Home Price / Minimum Wage</span>
+            </div>
+        </td>
+        <td id="yearAMinWageHoursForAverageHome"></td>
+        <td id="compareMinWageHoursForAverageHome"></td>
+        <td id="yearBMinWageHoursForAverageHome"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Median Income Hours to Purchase Average Home:
+                <span class="tooltip-text">Hours = Avg Home Price / (Median Yearly Income / 2080)</span>
+            </div>
+        </td>
+        <td id="yearAMedianIncomeHoursForAverageHome"></td>
+        <td id="compareMedianIncomeHoursForAverageHome"></td>
+        <td id="yearBMedianIncomeHoursForAverageHome"></td>
+    </tr>
+    <tr class="light-border-bottom">
+        <td class="row-title">
+            <div class="tooltip">
+                Average Salary Hours to Purchase Average Home:
+                <span class="tooltip-text">Hours = Avg Home Price / (Avg Yearly Salary / 2080)</span>
+            </div>
+        </td>
+        <td id="yearAAverageSalaryHoursForAverageHome"></td>
+        <td id="compareAverageSalaryHoursForAverageHome"></td>
+        <td id="yearBAverageSalaryHoursForAverageHome"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Minimum Wage Hours for Average Public Tuition:
+                <span class="tooltip-text">Hours = Avg Public Tuition / Minimum Wage</span>
+            </div>
+        </td>
+        <td id="yearAMinWageHoursForPublicTuition"></td>
+        <td id="compareMinWageHoursForPublicTuition"></td>
+        <td id="yearBMinWageHoursForPublicTuition"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Median Income Hours for Average Public Tuition:
+                <span class="tooltip-text">Hours = Avg Public Tuition / (Median Yearly Income / 2080)</span>
+            </div>
+        </td>
+        <td id="yearAMedianIncomeHoursForPublicTuition"></td>
+        <td id="compareMedianIncomeHoursForPublicTuition"></td>
+        <td id="yearBMedianIncomeHoursForPublicTuition"></td>
+    </tr>
+    <tr class="light-border-bottom">
+        <td class="row-title">
+            <div class="tooltip">
+                Average Salary Hours for Average Public Tuition:
+                <span class="tooltip-text">Hours = Avg Public Tuition / (Avg Yearly Salary / 2080)</span>
+            </div>
+        </td>
+        <td id="yearAAverageSalaryHoursForPublicTuition"></td>
+        <td id="compareAverageSalaryHoursForPublicTuition"></td>
+        <td id="yearBAverageSalaryHoursForPublicTuition"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Minimum Wage Hours for Average Private Tuition:
+                <span class="tooltip-text">Hours = Avg Private Tuition / Minimum Wage</span>
+            </div>
+        </td>
+        <td id="yearAMinWageHoursForPrivateTuition"></td>
+        <td id="compareMinWageHoursForPrivateTuition"></td>
+        <td id="yearBMinWageHoursForPrivateTuition"></td>
+    </tr>
+    <tr>
+        <td class="row-title">
+            <div class="tooltip">
+                Median Income Hours for Average Private Tuition:
+                <span class="tooltip-text">Hours = Avg Private Tuition / (Median Yearly Income / 2080)</span>
+            </div>
+        </td>
+        <td id="yearAMedianIncomeHoursForPrivateTuition"></td>
+        <td id="compareMedianIncomeHoursForPrivateTuition"></td>
+        <td id="yearBMedianIncomeHoursForPrivateTuition"></td>
+    </tr>
+    <tr class="border-bottom">
+        <td class="row-title">
+            <div class="tooltip">
+                Average Salary Hours for Average Private Tuition:
+                <span class="tooltip-text">Hours = Avg Private Tuition / (Avg Yearly Salary / 2080)</span>
+            </div>
+        </td>
+        <td id="yearAAverageSalaryHoursForPrivateTuition"></td>
+        <td id="compareAverageSalaryHoursForPrivateTuition"></td>
+        <td id="yearBAverageSalaryHoursForPrivateTuition"></td>
+    </tr>
+</table>
+    <script src="scripts.js"></script>
+</body>
+</html>

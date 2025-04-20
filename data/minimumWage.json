@@ -1,0 +1,26 @@
+﻿
+[
+  { "year": 1938, "min_wage": 0.25 },
+  { "year": 1939, "min_wage": 0.30 },
+  { "year": 1945, "min_wage": 0.40 },
+  { "year": 1950, "min_wage": 0.75 },
+  { "year": 1956, "min_wage": 1.00 },
+  { "year": 1961, "min_wage": 1.15 },
+  { "year": 1963, "min_wage": 1.25 },
+  { "year": 1967, "min_wage": 1.40 },
+  { "year": 1968, "min_wage": 1.60 },
+  { "year": 1974, "min_wage": 2.00 },
+  { "year": 1975, "min_wage": 2.10 },
+  { "year": 1976, "min_wage": 2.30 },
+  { "year": 1978, "min_wage": 2.65 },
+  { "year": 1979, "min_wage": 2.90 },
+  { "year": 1980, "min_wage": 3.10 },
+  { "year": 1981, "min_wage": 3.35 },
+  { "year": 1990, "min_wage": 3.80 },
+  { "year": 1991, "min_wage": 4.25 },
+  { "year": 1996, "min_wage": 4.75 },
+  { "year": 1997, "min_wage": 5.15 },
+  { "year": 2007, "min_wage": 5.85 },
+  { "year": 2008, "min_wage": 6.55 },
+  { "year": 2009, "min_wage": 7.25 }
+]

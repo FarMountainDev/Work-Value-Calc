@@ -1,0 +1,124 @@
+﻿html {
+    font-family: sans-serif;
+}
+
+table {
+    min-width: 1080px;
+    max-width: 1920px;
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 22px;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-size: 42px;
+    font-weight: lighter;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+select {
+    text-align: center;
+    text-align-last: center;
+}
+
+select option {
+    text-align: center;
+}
+
+.row-title {
+    font-weight: bold;
+    font-size: 26px;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.year-select {
+    text-align: center;
+}
+
+.year-select select {
+    font-size: 22px;
+    padding: 0.5rem;
+    margin: auto;
+    width: 100%;
+}
+
+.increase {
+    color: #c41e3a; /* Red for increase (more hours needed is bad) */
+}
+
+.decrease {
+    color: #228B22; /* Green for decrease (fewer hours needed is good) */
+}
+
+.border-bottom {
+    border-bottom: 3px solid #333;
+}
+
+.border-top {
+    border-top: 3px solid #333;
+}
+
+.light-border-bottom {
+    border-bottom: 2px solid #BBB;
+}
+
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    cursor: default;
+}
+
+/* Tooltip text */
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 500px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 120%;
+    left: 50%;
+    margin-left: -250px; /* Use half of the width (500/2 = 250), to center the tooltip */
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltip-text::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
