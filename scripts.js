@@ -10,6 +10,9 @@ const currentYear = new Date().getFullYear();
 const yearASelect = document.getElementById('yearA');
 const yearBSelect = document.getElementById('yearB');
 
+// Get the theme toggle button
+const themeToggleButton = document.getElementById('theme-toggle');
+
 // Function to populate a select element with years
 function populateYearOptions(selectElement, defaultYear) {
     for (let year = selectStartYear; year <= currentYear; year++) {
@@ -21,31 +24,6 @@ function populateYearOptions(selectElement, defaultYear) {
         }
         selectElement.appendChild(option);
     }
-}
-
-// Populate both select elements
-populateYearOptions(yearASelect, 1980);
-populateYearOptions(yearBSelect, currentYear);
-
-// Load all JSON files from the /data folder
-async function loadAllJsonData() {
-    const files = ['minimumWage.json', 'medianPersonalIncome.json', 'averageSalary.json',
-        'averageHomePrice.json', 'averageTuitionPrice.json'];
-    const data = {};
-
-    for (const file of files) {
-        try {
-            const response = await fetch(`./data/${file}`);
-            if (!response.ok) {
-                throw new Error(`Failed to load ${file}: ${response.statusText}`);
-            }
-            data[file] = await response.json(); // Store data by file name
-        } catch (error) {
-            console.error(`Error loading ${file}:`, error);
-        }
-    }
-
-    return data;
 }
 
 // Find the closest year with data in a specific dataset
@@ -311,8 +289,45 @@ function updateComparisons() {
     }
 }
 
+// Function to apply the theme
+function applyTheme(isDarkMode) {
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        themeToggleButton.textContent = 'Switch to Light Mode';
+    } else {
+        document.body.classList.remove('dark-mode');
+        themeToggleButton.textContent = 'Switch to Dark Mode';
+    }
+}
+
+// Load all JSON files from the /data folder
+async function loadAllJsonData() {
+    const files = ['minimumWage.json', 'medianPersonalIncome.json', 'averageSalary.json',
+        'averageHomePrice.json', 'averageTuitionPrice.json'];
+    const data = {};
+
+    for (const file of files) {
+        try {
+            const response = await fetch(`./data/${file}`);
+            if (!response.ok) {
+                throw new Error(`Failed to load ${file}: ${response.statusText}`);
+            }
+            data[file] = await response.json(); // Store data by file name
+        } catch (error) {
+            console.error(`Error loading ${file}:`, error);
+        }
+    }
+
+    return data;
+}
+
 // Main function to handle year selection and data display
 async function main() {
+    // Check the system's preferred theme and apply it
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(prefersDarkMode);
+    
+    // Load all JSON data
     const jsonData = await loadAllJsonData();
 
     // Define the mapping of file names to table column IDs and keys for YearA and YearB
@@ -345,7 +360,13 @@ async function main() {
             format: 'dollars'
         }
     };
+
+
+    // Populate both select elements
+    populateYearOptions(yearASelect, 1980);
+    populateYearOptions(yearBSelect, currentYear);
     
+    // Add event listeners to the select elements
     yearASelect.addEventListener('change', () => {
         const selectedYear = parseInt(yearASelect.value, 10);
         updateTable(jsonData, selectedYear, columnMappingYearA);
@@ -360,11 +381,18 @@ async function main() {
         updateComparisons();
     });
 
+    // Initial table update for the default selected years
     updateTable(jsonData, parseInt(yearASelect.value, 10), columnMappingYearA);
     updateTable(jsonData, parseInt(yearBSelect.value, 10), columnMappingYearB);
     updateCalculatedValues(jsonData, parseInt(yearASelect.value, 10), true);
     updateCalculatedValues(jsonData, parseInt(yearBSelect.value, 10), false);
     updateComparisons();
+
+    // Add an event listener to the button to toggle the theme
+    themeToggleButton.addEventListener('click', () => {
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+        themeToggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    });
 }
 
 // Run the main function

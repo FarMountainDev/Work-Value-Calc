@@ -6,9 +6,10 @@ table {
     min-width: 1080px;
     max-width: 1920px;
     border-collapse: collapse;
-    margin: auto;
+    margin: 1.5rem auto;
     font-size: 22px;
     text-align: center;
+    position: relative;
 }
 
 th, td {
@@ -38,6 +39,11 @@ select {
 
 select option {
     text-align: center;
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 10px;
 }
 
 .row-title {
@@ -121,4 +127,64 @@ select option {
     border-width: 5px;
     border-style: solid;
     border-color: black transparent transparent transparent;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #0A2647;
+    color: #EEE;
+}
+
+body.dark-mode table {
+    background-color: #0A2647;
+    color: #EEE;
+}
+
+body.dark-mode th {
+    background-color: #0e3059;
+}
+
+body.dark-mode th, body.dark-mode td {
+    border: 1px solid #2ea29f;
+}
+
+body.dark-mode tr:nth-child(even) {
+    background-color: #0d3059;
+}
+
+body.dark-mode tr:hover {
+    background-color: #133a67;
+}
+
+body.dark-mode .tooltip {
+    border-bottom: 1px dotted #1a6c69;
+}
+
+body.dark-mode .tooltip .tooltip-text {
+    background-color: #151c26;
+    color: #DEDEDE;
+}
+
+body.dark-mode .tooltip .tooltip-text::after {
+    border-color: #151c26 transparent transparent transparent;
+}
+
+body.dark-mode .border-bottom {
+    border-bottom: 4px solid #2ea29f;
+}
+
+body.dark-mode .border-top {
+    border-top: 4px solid #2ea29f;
+}
+
+body.dark-mode .light-border-bottom {
+    border-bottom: 2px solid #2ea29f;
+}
+
+body.dark-mode .increase {
+    color: #ff7171; /* Lighter red for increase in dark mode */
+}
+
+body.dark-mode .decrease {
+    color: #8dff8d; /* Lighter green for decrease in dark mode */
 }
