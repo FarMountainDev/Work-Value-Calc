@@ -62,7 +62,7 @@ function formatNumber(value, showDecimals = true) {
 }
 
 // Update the table with data for the selected year
-function updateTable(data, year, columnIds) {
+function updateYearData(data, year, columnIds) {
     for (const [file, fileConfig] of Object.entries(columnIds)) {
         const dataset = data[file];
         if (!dataset) continue;
@@ -289,7 +289,7 @@ function updateComparisons() {
     }
 }
 
-// Function to apply the theme
+// Apply the theme based on local storage or system preference
 function applyTheme(isDarkMode) {
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
@@ -297,6 +297,32 @@ function applyTheme(isDarkMode) {
     } else {
         document.body.classList.remove('dark-mode');
         themeToggleButton.textContent = 'Switch to Dark Mode';
+    }
+}
+
+// Save the theme to local storage
+function saveTheme(isDarkMode) {
+    if (isDarkMode) {
+        localStorage.setItem('work-value-theme', 'dark-mode');
+        console.log('Theme saved as dark mode');
+    } else {
+        localStorage.setItem('work-value-theme', 'light-mode');
+        console.log('Theme saved as light mode');
+    }
+}
+
+// Load the theme from local storage
+function loadThemeIsDarkMode() {
+    const savedTheme = localStorage.getItem('work-value-theme');
+    if (savedTheme === 'dark-mode') {
+        console.log('Loaded saved theme: dark mode');
+        return true;
+    } else if (savedTheme === 'light-mode') {
+        console.log('Loaded saved theme: light mode');
+        return false;
+    } else {
+        console.log('No saved theme found, using system preference');
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 }
 
@@ -323,9 +349,9 @@ async function loadAllJsonData() {
 
 // Main function to handle year selection and data display
 async function main() {
-    // Check the system's preferred theme and apply it
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(prefersDarkMode);
+    // Set the default theme based on local storage or system preference
+    const isDarkMode = loadThemeIsDarkMode();
+    applyTheme(isDarkMode);
     
     // Load all JSON data
     const jsonData = await loadAllJsonData();
@@ -369,29 +395,31 @@ async function main() {
     // Add event listeners to the select elements
     yearASelect.addEventListener('change', () => {
         const selectedYear = parseInt(yearASelect.value, 10);
-        updateTable(jsonData, selectedYear, columnMappingYearA);
+        updateYearData(jsonData, selectedYear, columnMappingYearA);
         updateCalculatedValues(jsonData, selectedYear, true);
         updateComparisons();
     });
 
     yearBSelect.addEventListener('change', () => {
         const selectedYear = parseInt(yearBSelect.value, 10);
-        updateTable(jsonData, selectedYear, columnMappingYearB);
+        updateYearData(jsonData, selectedYear, columnMappingYearB);
         updateCalculatedValues(jsonData, selectedYear, false);
         updateComparisons();
     });
 
     // Initial table update for the default selected years
-    updateTable(jsonData, parseInt(yearASelect.value, 10), columnMappingYearA);
-    updateTable(jsonData, parseInt(yearBSelect.value, 10), columnMappingYearB);
+    updateYearData(jsonData, parseInt(yearASelect.value, 10), columnMappingYearA);
+    updateYearData(jsonData, parseInt(yearBSelect.value, 10), columnMappingYearB);
     updateCalculatedValues(jsonData, parseInt(yearASelect.value, 10), true);
     updateCalculatedValues(jsonData, parseInt(yearBSelect.value, 10), false);
     updateComparisons();
 
     // Add an event listener to the button to toggle the theme
+
     themeToggleButton.addEventListener('click', () => {
         const isDarkMode = document.body.classList.toggle('dark-mode');
-        themeToggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        saveTheme(isDarkMode);
+        applyTheme(isDarkMode);
     });
 }
 
