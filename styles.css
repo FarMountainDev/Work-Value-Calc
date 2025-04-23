@@ -19,17 +19,11 @@ th, td {
 
 th {
     background-color: #f4f4f4;
-    font-size: 42px;
-    font-weight: lighter;
     text-align: center;
 }
 
 tr:nth-child(even) {
     background-color: #f9f9f9;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
 }
 
 select {
@@ -39,6 +33,20 @@ select {
 
 select option {
     text-align: center;
+}
+
+.data-row:hover {
+    background-color: #f1f1f1;
+}
+
+.table-title {
+    font-size: 42px;
+    font-weight: lighter;
+}
+
+.table-subtitle {
+    font-size: 18px;
+    font-weight: lighter;
 }
 
 .theme-toggle {
@@ -131,28 +139,40 @@ select option {
 
 /* Dark mode styles */
 body.dark-mode {
-    background-color: #0A2647;
+    background-color: #061A2F;
     color: #EEE;
 }
 
 body.dark-mode table {
-    background-color: #0A2647;
+    background-color: #061A2F;
     color: #EEE;
 }
 
 body.dark-mode th {
-    background-color: #0e3059;
+    background-color: #092544;
 }
 
 body.dark-mode th, body.dark-mode td {
-    border: 1px solid #2ea29f;
+    border: 1px solid #3c5560;
+}
+
+body.dark-mode .border-bottom {
+    border-bottom: 4px solid #3c5560;
+}
+
+body.dark-mode .border-top {
+    border-top: 4px solid #3c5560;
+}
+
+body.dark-mode .light-border-bottom {
+    border-bottom: 2px solid #3c5560;
 }
 
 body.dark-mode tr:nth-child(even) {
-    background-color: #0d3059;
+    background-color: #092544;
 }
 
-body.dark-mode tr:hover {
+body.dark-mode .data-row:hover {
     background-color: #133a67;
 }
 
@@ -161,24 +181,12 @@ body.dark-mode .tooltip {
 }
 
 body.dark-mode .tooltip .tooltip-text {
-    background-color: #151c26;
+    background-color: #000;
     color: #DEDEDE;
 }
 
 body.dark-mode .tooltip .tooltip-text::after {
-    border-color: #151c26 transparent transparent transparent;
-}
-
-body.dark-mode .border-bottom {
-    border-bottom: 4px solid #2ea29f;
-}
-
-body.dark-mode .border-top {
-    border-top: 4px solid #2ea29f;
-}
-
-body.dark-mode .light-border-bottom {
-    border-bottom: 2px solid #2ea29f;
+    border-color: #000 transparent transparent transparent;
 }
 
 body.dark-mode .increase {

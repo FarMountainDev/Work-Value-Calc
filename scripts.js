@@ -415,7 +415,6 @@ async function main() {
     updateComparisons();
 
     // Add an event listener to the button to toggle the theme
-
     themeToggleButton.addEventListener('click', () => {
         const isDarkMode = document.body.classList.toggle('dark-mode');
         saveTheme(isDarkMode);

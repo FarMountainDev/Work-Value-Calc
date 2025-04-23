@@ -1,5 +1,5 @@
 # Work-Value-Calc
-A tool for comparing the history of spending power between different years
+A tool for comparing the history of how time spent working relates to spending power between different years
 
 ### Live Site
 https://farmountaindev.github.io/Work-Value-Calc/
